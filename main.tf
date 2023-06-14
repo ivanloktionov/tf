@@ -8,7 +8,7 @@ module "github_repository" {
 }
 
 module "flux_bootstrap" {
-  source            = "./modules/tf-fluxcd-flux-bootstrap"
+  source            = "github.com/den-vasyliev/tf-fluxcd-flux-bootstrap"
   github_repository = "${var.GITHUB_OWNER}/${var.FLUX_GITHUB_REPO}"
   private_key       = module.tls_private_key.private_key_pem
   config_path       = module.gke_cluster.kubeconfig
@@ -19,7 +19,7 @@ module "gke_cluster" {
   source         = "github.com/ivanloktionov/tf-google-gke-cluster"
   GOOGLE_REGION  = var.GOOGLE_REGION
   GOOGLE_PROJECT = var.GOOGLE_PROJECT
-  GKE_NUM_NODES  = 1
+  GKE_NUM_NODES  = 2
 }
 
 module "tls_private_key" {

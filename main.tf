@@ -15,10 +15,11 @@ module "flux_bootstrap" {
   github_token      = var.GITHUB_TOKEN
 }
 
-module "kind_cluster" {
-
-  source = "github.com/den-vasyliev/tf-kind-cluster"
-
+module "gke_cluster" {
+  source         = "github.com/ivanloktionov/tf-google-gke-cluster"
+  GOOGLE_REGION  = var.GOOGLE_REGION
+  GOOGLE_PROJECT = var.GOOGLE_PROJECT
+  GKE_NUM_NODES  = 1
 }
 
 module "tls_private_key" {
